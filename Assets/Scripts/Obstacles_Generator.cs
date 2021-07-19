@@ -14,8 +14,11 @@ public class Obstacles_Generator : MonoBehaviour
         if (collision.tag == "MainCamera")
         {
             transform.position = new Vector2(transform.position.x, transform.position.y + 20);
-
             RandomObstacles();
+
+            Score.Mine.score += 1;
+            if (Score.Mine.bestScore < Score.Mine.score)
+                Score.Mine.actuBestScore();
         }
     }
 

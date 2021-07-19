@@ -8,13 +8,13 @@ public class PlayerManager : MonoBehaviour
 
     int direction;
     float speed;
-    public GameObject Particles;
+    private Animator anim;
 
     void Start()
     {
         direction = 0;
         speed = 15;
-        Particles.gameObject.SetActive(false);
+        anim = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -22,10 +22,26 @@ public class PlayerManager : MonoBehaviour
         if (collision.tag == "Spike")
         {
             GameManager.Mine.GameStarted = false;
-            Particles.gameObject.SetActive(true);
+            GameManager.Mine.ParticlePlayer.SetActive(true);
             gameObject.SetActive(false);
             SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
         }
+        else if (collision.tag == "Portal")
+        {
+            GetComponent<CircleCollider2D>().enabled = false;
+            anim.SetBool("StartTP", true);
+        }
+    }
+
+    public void SwitchDistance()
+    {
+        direction = 1;
+    }
+
+    public void ResetTP()
+    {
+        anim.SetBool("StartTP", false);
+        GetComponent<CircleCollider2D>().enabled = true;
     }
 
     void Update()

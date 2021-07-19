@@ -7,15 +7,14 @@ public class GameManager : MonoBehaviour
     static public GameManager Mine;
 
     public bool GameStarted;
+    public GameObject Player;
+    public GameObject ParticlePlayer;
 
     void Start()
     {
         Mine = this;
         GameStarted = false;
-    }
-
-    void Update()
-    {
-        
+        Player.gameObject.SetActive(false);
+        ParticlePlayer.gameObject.SetActive(false);
     }
 }

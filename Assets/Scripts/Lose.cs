@@ -2,13 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Lose : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    public Text Score_text, BestScore_text;
+
     void Start()
     {
-        
+        Score_text.text = "" + Score.Mine.score;
+        BestScore_text.text = "" + Score.Mine.bestScore;
     }
 
     // Update is called once per frame

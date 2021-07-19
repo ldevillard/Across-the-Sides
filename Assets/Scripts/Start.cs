@@ -10,5 +10,6 @@ public class Start : MonoBehaviour
     {
         StartFold.gameObject.SetActive(false);
         GameManager.Mine.GameStarted = true;
+        GameManager.Mine.Player.SetActive(true);
     }
 }
