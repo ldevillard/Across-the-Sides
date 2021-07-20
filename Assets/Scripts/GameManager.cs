@@ -10,11 +10,19 @@ public class GameManager : MonoBehaviour
     public GameObject Player;
     public GameObject ParticlePlayer;
 
+
+
     void Start()
     {
         Mine = this;
         GameStarted = false;
         Player.gameObject.SetActive(false);
         ParticlePlayer.gameObject.SetActive(false);
+        transform.position = new Vector3(0, 0, -10);
+    }
+
+    void Update()
+    {
+
     }
 }

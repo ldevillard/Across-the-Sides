@@ -31,11 +31,27 @@ public class PlayerManager : MonoBehaviour
             GetComponent<CircleCollider2D>().enabled = false;
             anim.SetBool("StartTP", true);
         }
+        else if (collision.tag == "Portal2")
+        {
+            GetComponent<CircleCollider2D>().enabled = false;
+            anim.SetBool("StartTP2", true);
+        }
     }
 
     public void SwitchDistance()
     {
         direction = 1;
+    }
+
+    public void SwitchDistance2()
+    {
+        direction = 0;
+    }
+
+    public void ResetTP2()
+    {
+        anim.SetBool("StartTP2", false);
+        GetComponent<CircleCollider2D>().enabled = true;
     }
 
     public void ResetTP()
@@ -54,9 +70,9 @@ public class PlayerManager : MonoBehaviour
                 direction = 0;
         }
 
-        if (direction == 0 && transform.position.x < 1.62f)
-            transform.position = new Vector2(Mathf.Lerp(transform.position.x, 1.65f, speed * Time.deltaTime), transform.position.y);
-        else if (direction == 1 && transform.position.x > -1.62f)
-            transform.position = new Vector2(Mathf.Lerp(transform.position.x, -1.65f, speed * Time.deltaTime), transform.position.y);
+        if (direction == 0 && transform.position.x < 1.70f)
+            transform.position = new Vector2(Mathf.Lerp(transform.position.x, 1.72f, speed * Time.deltaTime), transform.position.y);
+        else if (direction == 1 && transform.position.x > -1.70f)
+            transform.position = new Vector2(Mathf.Lerp(transform.position.x, -1.72f, speed * Time.deltaTime), transform.position.y);
     }
 }

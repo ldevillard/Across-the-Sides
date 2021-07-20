@@ -5,12 +5,17 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    static public UIManager Mine;
 
     public Text ScoreText;
+    public GameObject UpgradeText;
 
     private void Start()
     {
+        Mine = this;
         ScoreText.gameObject.SetActive(false);
+
+        UpgradeText.gameObject.SetActive(false);
     }
 
     void Update()

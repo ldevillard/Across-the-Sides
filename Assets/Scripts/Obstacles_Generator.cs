@@ -9,6 +9,8 @@ public class Obstacles_Generator : MonoBehaviour
     public float speed;
     public GameObject[] Moduls;
 
+    private int curScore = 0;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "MainCamera")
@@ -25,7 +27,7 @@ public class Obstacles_Generator : MonoBehaviour
     void Start()
     {
         Mine = this;
-        speed = 8f;
+        speed = 7f;
 
         RandomObstacles();
     }
@@ -34,6 +36,12 @@ public class Obstacles_Generator : MonoBehaviour
     {
         if (GameManager.Mine.GameStarted)
             transform.position = new Vector2(transform.position.x, Time.deltaTime * (-speed) + transform.position.y);
+        if (curScore + 10 <= Score.Mine.score && Score.Mine.score <= 60)
+        {
+            UIManager.Mine.UpgradeText.gameObject.SetActive(true);
+            curScore = Score.Mine.score;
+            speed *= 1.1f;
+        }
     }
 
     int RandomObstacles()
