@@ -23,6 +23,6 @@ public class Lose : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadSceneAsync(0);
+        SceneManager.LoadSceneAsync(1);
     }
 }

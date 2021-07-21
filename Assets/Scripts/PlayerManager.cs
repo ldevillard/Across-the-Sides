@@ -24,7 +24,7 @@ public class PlayerManager : MonoBehaviour
             GameManager.Mine.GameStarted = false;
             GameManager.Mine.ParticlePlayer.SetActive(true);
             gameObject.SetActive(false);
-            SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+            SceneManager.LoadSceneAsync(2, LoadSceneMode.Additive);
         }
         else if (collision.tag == "Portal")
         {

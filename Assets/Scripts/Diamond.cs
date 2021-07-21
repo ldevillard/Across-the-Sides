@@ -5,6 +5,7 @@ using UnityEngine;
 public class Diamond : MonoBehaviour
 {
     private Animator anim;
+    public AudioClip[] DiamsSFX;
 
     private void Start()
     {
@@ -18,7 +19,15 @@ public class Diamond : MonoBehaviour
         {
             anim.SetBool("Taken", true);
             addDiamond(1);
+            PlayRandomSound();
         }
+    }
+
+    void PlayRandomSound() 
+    {
+        int i = Random.Range(0, DiamsSFX.Length);
+
+        AudioManager.Mine.sourceSFX.PlayOneShot(DiamsSFX[i]);
     }
 
     static public void addDiamond(int nbr)
