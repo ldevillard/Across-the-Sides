@@ -28,7 +28,7 @@ public class Ads : MonoBehaviour
     public void ShowAds()
     {
         nbrAds++;
-        if (nbrAds == 4) 
+        if (nbrAds == 5) 
         {
             Advertisement.Show();
             nbrAds = 0;
