@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
 
     public Text ScoreText;
     public GameObject UpgradeText;
+    public Text Diamonds;
 
     private void Start()
     {
@@ -29,5 +30,7 @@ public class UIManager : MonoBehaviour
         {
             ScoreText.gameObject.SetActive(false);
         }
+
+        Diamonds.text = "" + Score.Mine.Diamonds;
     }
 }

@@ -27,7 +27,7 @@ public class Obstacles_Generator : MonoBehaviour
     void Start()
     {
         Mine = this;
-        speed = 7f;
+        speed = 6f;
 
         RandomObstacles();
     }
@@ -50,8 +50,17 @@ public class Obstacles_Generator : MonoBehaviour
 
         while (i < Moduls.Length)
             Moduls[i++].gameObject.SetActive(false);
-        i = Random.Range(0, Moduls.Length);
+
+        if (Score.Mine.score < 10)
+            i = Random.Range(0, Moduls.Length / 4);
+        else if (Score.Mine.score < 20)
+            i = Random.Range(0, Moduls.Length / 2);
+        else if (Score.Mine.score < 30)
+            i = Random.Range(0, Moduls.Length / 4 * 3);
+        else
+            i = Random.Range(0, Moduls.Length);
         Moduls[i].gameObject.SetActive(true);
+        Moduls[i].GetComponent<DiamondGenerator>().GenerateDiamond();
         return i;
     }
 }

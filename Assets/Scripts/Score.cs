@@ -6,9 +6,9 @@ public class Score : MonoBehaviour
 {
     static public Score Mine;
 
-    public int score, bestScore;
+    public int score, bestScore, Diamonds;
 
-    private void Start()
+    private void Awake()
     {
         Mine = this;
         score = 0;
@@ -16,6 +16,11 @@ public class Score : MonoBehaviour
             bestScore = PlayerPrefs.GetInt("bestScore");
         else
             bestScore = 0;
+
+        if (PlayerPrefs.HasKey("diamond"))
+            Diamonds = PlayerPrefs.GetInt("diamond");
+        else
+            Diamonds = 0;
     }
 
     public void actuBestScore()
