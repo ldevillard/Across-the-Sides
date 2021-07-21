@@ -29,5 +29,6 @@ public class Lose : MonoBehaviour
         AudioManager.Mine.sourceSFX.PlayOneShot(restart);
         DontDestroy.fade = false;
         Wipe.SetActive(true);
+        Ads.Mine.ShowAds();
     }
 }
