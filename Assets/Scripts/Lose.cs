@@ -8,11 +8,14 @@ public class Lose : MonoBehaviour
 {
 
     public Text Score_text, BestScore_text;
+    public GameObject Wipe;
+    public AudioClip restart;
 
     void Start()
     {
         Score_text.text = "" + Score.Mine.score;
         BestScore_text.text = "" + Score.Mine.bestScore;
+        Wipe.SetActive(false);
     }
 
     // Update is called once per frame
@@ -23,6 +26,8 @@ public class Lose : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadSceneAsync(1);
+        AudioManager.Mine.sourceSFX.PlayOneShot(restart);
+        DontDestroy.fade = false;
+        Wipe.SetActive(true);
     }
 }

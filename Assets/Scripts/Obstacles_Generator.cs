@@ -8,6 +8,7 @@ public class Obstacles_Generator : MonoBehaviour
 
     public float speed;
     public GameObject[] Moduls;
+    public AudioClip speedUpgrade;
 
     private int curScore = 0;
 
@@ -39,6 +40,7 @@ public class Obstacles_Generator : MonoBehaviour
         if (curScore + 10 <= Score.Mine.score && Score.Mine.score <= 60)
         {
             UIManager.Mine.UpgradeText.gameObject.SetActive(true);
+            AudioManager.Mine.sourceSFX.PlayOneShot(speedUpgrade);
             curScore = Score.Mine.score;
             speed *= 1.1f;
         }

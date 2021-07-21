@@ -8,6 +8,7 @@ public class Loader : MonoBehaviour
     public GameObject loadingScreen;
     public Slider slider;
     public Text progressText;
+    public GameObject CrossFade;
 
     private void Start()
     {
@@ -21,16 +22,16 @@ public class Loader : MonoBehaviour
     IEnumerator LoadAsynchronously(int sceneIndex) 
     {
         float i = 0;
+        CrossFade.SetActive(false);
 
         while (i < 100)
         {
             progressText.text = i + "%";
 
             slider.value = i / 100;
+            i += 2;
             yield return null;
-            i++;
         }
-
-        SceneManager.LoadSceneAsync(sceneIndex);
+        CrossFade.SetActive(true);
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,7 @@ public class PlayerManager : MonoBehaviour
     int direction;
     float speed;
     private Animator anim;
+    public AudioClip pop, dead, portal, bar;
 
     void Start()
     {
@@ -21,21 +23,35 @@ public class PlayerManager : MonoBehaviour
     {
         if (collision.tag == "Spike")
         {
-            GameManager.Mine.GameStarted = false;
-            GameManager.Mine.ParticlePlayer.SetActive(true);
-            gameObject.SetActive(false);
-            SceneManager.LoadSceneAsync(2, LoadSceneMode.Additive);
+            EndGame();
         }
         else if (collision.tag == "Portal")
         {
+            AudioManager.Mine.sourceSFX.PlayOneShot(portal);
             GetComponent<CircleCollider2D>().enabled = false;
             anim.SetBool("StartTP", true);
         }
         else if (collision.tag == "Portal2")
         {
+            AudioManager.Mine.sourceSFX.PlayOneShot(portal);
             GetComponent<CircleCollider2D>().enabled = false;
             anim.SetBool("StartTP2", true);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Bar")
+            AudioManager.Mine.sourceSFX.PlayOneShot(bar);
+    }
+
+    public void EndGame() 
+    {
+        AudioManager.Mine.sourceSFX.PlayOneShot(dead);
+        GameManager.Mine.GameStarted = false;
+        GameManager.Mine.ParticlePlayer.SetActive(true);
+        gameObject.SetActive(false);
+        SceneManager.LoadSceneAsync(2, LoadSceneMode.Additive);
     }
 
     public void SwitchDistance()
@@ -64,6 +80,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && GameManager.Mine.GameStarted)
         {
+            AudioManager.Mine.sourceSFX.PlayOneShot(pop);
             if (direction == 0)
                 direction = 1;
             else

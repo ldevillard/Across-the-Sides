@@ -5,6 +5,7 @@ using UnityEngine;
 public class DontDestroy : MonoBehaviour
 {
     public AudioSource audioSource;
+    static public bool fade;
     void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);
@@ -12,6 +13,7 @@ public class DontDestroy : MonoBehaviour
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();   
+        audioSource = GetComponent<AudioSource>();
+        fade = true;
     }
 }
