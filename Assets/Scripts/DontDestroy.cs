@@ -6,6 +6,7 @@ public class DontDestroy : MonoBehaviour
 {
     public AudioSource audioSource;
     static public bool fade;
+    static public bool RewardAdd;
     void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);
@@ -15,5 +16,6 @@ public class DontDestroy : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         fade = true;
+        RewardAdd = true;
     }
 }

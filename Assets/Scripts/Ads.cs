@@ -11,6 +11,7 @@ public class Ads : MonoBehaviour
 #elif UNITY_ANDROID
     private string gameId = "4227045";
 #endif
+
     bool testMode = false;
     int nbrAds;
 

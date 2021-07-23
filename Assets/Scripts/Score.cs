@@ -11,7 +11,13 @@ public class Score : MonoBehaviour
     private void Awake()
     {
         Mine = this;
-        score = 0;
+        if (PlayerPrefs.HasKey("score")) 
+        {
+            score = PlayerPrefs.GetInt("score");
+            PlayerPrefs.DeleteKey("score");
+        }
+        else
+            score = 0;
         if (PlayerPrefs.HasKey("bestScore"))
             bestScore = PlayerPrefs.GetInt("bestScore");
         else
