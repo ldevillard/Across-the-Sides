@@ -36,8 +36,8 @@ public class Shop : MonoBehaviour
         {
             if (PlayerPrefs.HasKey("sprite" + i))
             {
-                Sprite.GetComponent<Image>().sprite = PlayerSkin.Mine.Skins[i];
-                idx = i;
+                Sprite.GetComponent<Image>().sprite = PlayerSkin.Mine.Skins[0];
+                idx = 0;
                 keyFound = true;
             }
             i++;
@@ -86,6 +86,7 @@ public class Shop : MonoBehaviour
             PriceObj.SetActive(true);
             Select.SetActive(false);
         }
+
     }
 
     public void StartQuitingShop()
