@@ -15,6 +15,6 @@ public class BanStart : MonoBehaviour
     void Update()
     {
         if (GameManager.Mine.GameStarted)
-            transform.position = new Vector2(transform.position.x, Time.deltaTime * (-8) + transform.position.y);
+            transform.position = new Vector2(transform.position.x, Time.deltaTime * (-Obstacles_Manager.speed) + transform.position.y);
     }
 }

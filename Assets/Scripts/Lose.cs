@@ -12,21 +12,26 @@ public class Lose : MonoBehaviour
     public Text Score_text, BestScore_text;
     public GameObject Wipe;
     public AudioClip restart;
+    public GameObject RewardAd;
+
 
     void Start()
     {
         Mine = this;
         Score_text.text = "" + Score.Mine.score;
         BestScore_text.text = "" + Score.Mine.bestScore;
+        if (DontDestroy.RewardAdd)
+            RewardAd.SetActive(true);
+        else
+            RewardAd.SetActive(false);
         Wipe.SetActive(false);
     }
 
     // Update is called once per frame
-    void Update()
+    public void ShowRewardAd() 
     {
-        
+        Ads.Mine.ShowRewardedVideo();
     }
-
     public void RestartWithReward() 
     {
         PlayerPrefs.SetInt("score", Score.Mine.score);

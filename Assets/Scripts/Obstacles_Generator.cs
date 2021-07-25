@@ -10,7 +10,8 @@ public class Obstacles_Generator : MonoBehaviour
     public GameObject[] Moduls;
     public AudioClip speedUpgrade;
 
-    private int curScore = 0;
+    
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -28,7 +29,7 @@ public class Obstacles_Generator : MonoBehaviour
     void Start()
     {
         Mine = this;
-        speed = 6f;
+        speed = Obstacles_Manager.speed;
 
         RandomObstacles();
     }
@@ -37,13 +38,8 @@ public class Obstacles_Generator : MonoBehaviour
     {
         if (GameManager.Mine.GameStarted)
             transform.position = new Vector2(transform.position.x, Time.deltaTime * (-speed) + transform.position.y);
-        if (curScore + 10 <= Score.Mine.score && Score.Mine.score <= 60)
-        {
-            UIManager.Mine.UpgradeText.gameObject.SetActive(true);
-            AudioManager.Mine.sourceSFX.PlayOneShot(speedUpgrade);
-            curScore = Score.Mine.score;
-            speed *= 1.1f;
-        }
+        speed = Obstacles_Manager.speed;
+        Debug.Log(speed);
     }
 
     int RandomObstacles()

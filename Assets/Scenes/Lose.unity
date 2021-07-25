@@ -820,7 +820,6 @@ GameObject:
   m_Component:
   - component: {fileID: 739601549}
   - component: {fileID: 739601548}
-  - component: {fileID: 739601550}
   m_Layer: 0
   m_Name: Script
   m_TagString: Untagged
@@ -844,6 +843,7 @@ MonoBehaviour:
   BestScore_text: {fileID: 351766238}
   Wipe: {fileID: 607837091}
   restart: {fileID: 8300000, guid: 34b3b5c35ff72854dbf039b7fee61c91, type: 3}
+  RewardAd: {fileID: 1359826298}
 --- !u!4 &739601549
 Transform:
   m_ObjectHideFlags: 0
@@ -858,19 +858,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &739601550
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 739601547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a00e6433bf1cfcc409aaa22624eca690, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ButtonAds: {fileID: 1359826298}
 --- !u!1 &763748288
 GameObject:
   m_ObjectHideFlags: 0
@@ -1073,11 +1060,11 @@ RectTransform:
   m_Father: {fileID: 1961200533}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 154, y: -481}
-  m_SizeDelta: {x: 147.81, y: 111.545}
-  m_Pivot: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 159, y: 266}
+  m_SizeDelta: {x: 147.81, y: 111.54498}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1359826300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1122,9 +1109,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 739601550}
-        m_TargetAssemblyTypeName: RewardedAds, Assembly-CSharp
-        m_MethodName: ShowRewardedVideo
+      - m_Target: {fileID: 739601548}
+        m_TargetAssemblyTypeName: Lose, Assembly-CSharp
+        m_MethodName: ShowRewardAd
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

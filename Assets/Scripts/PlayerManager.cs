@@ -16,6 +16,7 @@ public class PlayerManager : MonoBehaviour
         direction = 0;
         speed = 15;
         anim = GetComponent<Animator>();
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -90,5 +91,8 @@ public class PlayerManager : MonoBehaviour
             transform.position = new Vector2(Mathf.Lerp(transform.position.x, 1.72f, speed * Time.deltaTime), transform.position.y);
         else if (direction == 1 && transform.position.x > -1.70f)
             transform.position = new Vector2(Mathf.Lerp(transform.position.x, -1.72f, speed * Time.deltaTime), transform.position.y);
+
+       // if (Input.GetKeyDown(KeyCode.Space)) //DELETE
+         //   EndGame();
     }
 }
