@@ -7857,7 +7857,7 @@ MonoBehaviour:
   ScoreText: {fileID: 743743081}
   UpgradeText: {fileID: 805652414}
   Diamonds: {fileID: 1231644282}
-  openShop: {fileID: 8300000, guid: 194df11e29dab534bbb1797b318e15a2, type: 3}
+  openShop: {fileID: 8300000, guid: 48758ec52e461ff4684442806835d657, type: 3}
 --- !u!1 &1707639660
 GameObject:
   m_ObjectHideFlags: 0

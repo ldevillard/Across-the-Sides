@@ -12,7 +12,7 @@ public class Shop : MonoBehaviour
     public Text Diamonds;
     public GameObject Sprite;
     int idx;
-    public AudioClip swipeSprite;
+    public AudioClip swipeSprite, closeShop, buy, select;
     public Text Price;
 
     public GameObject BuyObj;
@@ -20,21 +20,38 @@ public class Shop : MonoBehaviour
     public GameObject Select;
 
     public GameObject SelectedAnim;
+    public GameObject BuyAnim;
+
+    public Animator Anim;
 
     void Start()
     {
         Mine = this;
 
-        if (PlayerPrefs.HasKey("sprite"))
+        Anim.SetBool("close", false);
+
+        int i = 0;
+        bool keyFound = false;
+        while (i < PlayerSkin.Mine.Skins.Length) 
         {
-            Sprite.GetComponent<Image>().sprite = PlayerSkin.Mine.Skins[PlayerPrefs.GetInt("sprite")];
-            idx = PlayerPrefs.GetInt("sprite");
+            if (PlayerPrefs.HasKey("sprite" + i))
+            {
+                Sprite.GetComponent<Image>().sprite = PlayerSkin.Mine.Skins[i];
+                idx = i;
+                keyFound = true;
+            }
+            i++;
         }
-        else 
+        if (!keyFound) 
         {
             Sprite.GetComponent<Image>().sprite = PlayerSkin.Mine.Skins[0];
+            PlayerPrefs.SetInt("sprite" + 0, 1);
+            PlayerPrefs.SetInt("select" + 0, 1);
             idx = 0;
         }
+
+        BuyAnim.SetActive(false);
+        SelectedAnim.SetActive(false);
 
     }
 
@@ -59,16 +76,22 @@ public class Shop : MonoBehaviour
         {
             BuyObj.SetActive(false);
             PriceObj.SetActive(false);
-            //Select.SetActive(true);
+            if (PlayerPrefs.HasKey("select" + idx))
+                Select.SetActive(false);
+            else
+                Select.SetActive(true);
         }
-        else
+        else 
+        {
             PriceObj.SetActive(true);
+            Select.SetActive(false);
+        }
     }
 
-    public void QuitShop() 
+    public void StartQuitingShop()
     {
-        //StartANim
-        SceneManager.UnloadSceneAsync(3);
+        AudioManager.Mine.sourceSFX.PlayOneShot(closeShop);
+        Anim.SetBool("close", true);
     }
 
     public void SpriteNext() 
@@ -99,6 +122,21 @@ public class Shop : MonoBehaviour
         Sprite.SetActive(true);
     }
 
+    public void SelectSprite()
+    {
+        int i = 0;
+
+        while (i < PlayerSkin.Mine.Skins.Length) 
+        {
+            if (PlayerPrefs.HasKey("select" + i))
+                PlayerPrefs.DeleteKey("select" + i);
+            i++;
+        }
+        PlayerPrefs.SetInt("select" + idx, 1);
+        SelectedAnim.SetActive(true);
+        AudioManager.Mine.sourceSFX.PlayOneShot(select);
+    }
+
     public void Buy() 
     {
         Score.Mine.Diamonds -= PlayerSkin.Mine.Price[idx];
@@ -109,6 +147,9 @@ public class Shop : MonoBehaviour
 
         BuyObj.SetActive(false);
         PriceObj.SetActive(false);
-        //Select.SetActive(true);
-   }
+        Select.SetActive(true);
+
+        BuyAnim.SetActive(true);
+        AudioManager.Mine.sourceSFX.PlayOneShot(buy);
+    }
 }

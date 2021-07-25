@@ -39,7 +39,6 @@ public class Obstacles_Generator : MonoBehaviour
         if (GameManager.Mine.GameStarted)
             transform.position = new Vector2(transform.position.x, Time.deltaTime * (-speed) + transform.position.y);
         speed = Obstacles_Manager.speed;
-        Debug.Log(speed);
     }
 
     int RandomObstacles()

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR.WSA;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -11,12 +12,37 @@ public class PlayerManager : MonoBehaviour
     private Animator anim;
     public AudioClip pop, dead, portal, bar;
 
+    private SpriteRenderer rend;
+
     void Start()
     {
         direction = 0;
         speed = 15;
         anim = GetComponent<Animator>();
-        
+        rend = GetComponent<SpriteRenderer>();
+
+        PlayerPrefs.SetInt("sprite" + 0, 1);
+
+        int i = 0;
+        bool keyFound = false;
+        while (i < PlayerSkin.Mine.Skins.Length) 
+        {
+            if (PlayerPrefs.HasKey("select" + i)) 
+            {
+                string item = "select" + i;
+                rend.sprite = PlayerSkin.Mine.Skins[i];
+                Debug.Log(item);
+                keyFound = true;
+            }
+            i++;
+        } 
+        if (!keyFound) 
+        {
+            rend.sprite = PlayerSkin.Mine.Skins[0];
+            PlayerPrefs.SetInt("select" + 0, 1);
+        }
+
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
